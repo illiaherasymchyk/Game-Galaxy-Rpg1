@@ -67,16 +67,12 @@ public class AlienShip extends SpaceShip {
         }
 
         if (isBoss) {
-            // ЛОГИКА МИНИ-БОССА:
-            // 1. Если мало жизней (< 40%) и есть аптечка -> ЛЕЧИТЬСЯ
             if (hull < maxHull * 0.4 && repairKits > 0) {
                 nextMove = "UŻYCIE APTECZKI";
             }
-            // 2. Если мало щитов -> РЕГЕНИТЬ
             else if (shields < maxShields / 3) {
                 nextMove = "REGENERACJA TARCZ";
             }
-            // 3. Иначе -> СИЛЬНО БИТЬ
             else {
                 nextMove = "CIĘŻKI OSTRZAŁ";
             }
@@ -99,7 +95,6 @@ public class AlienShip extends SpaceShip {
 
         System.out.println("\n>>> " + name + " wykonuje: " + nextMove);
 
-        // ДЕЙСТВИЯ
         if (nextMove.contains("UŻYCIE APTECZKI")) {
             System.out.println("!!! BOSS SIĘ LECZY !!!");
             useRepairKit();
@@ -125,7 +120,7 @@ public class AlienShip extends SpaceShip {
     @Override public void specialAbility(SpaceShip target) {}
 
     @Override public void defensiveManeuver() {
-        shields = Math.min(maxShields, shields + 30); // Босс регенит больше
+        shields = Math.min(maxShields, shields + 30);
         isDefending = true;
         System.out.println(name + " regeneruje tarcze (+30).");
     }
